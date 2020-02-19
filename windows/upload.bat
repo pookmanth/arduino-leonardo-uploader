@@ -1,12 +1,12 @@
 @echo off
 setlocal
 
-for /f "tokens=1* delims==" %%I in ('wmic path win32_pnpentity get caption  /format:list ^| find "SparkFun Pro Micro"') do (
+for /f "tokens=1* delims==" %%I in ('wmic path win32_pnpentity get caption  /format:list ^| find "Arduino Leonardo"') do (
     call :resetCOM "%%~J"
 )
 
 :continue
-
+timeout /t 4
 :: wmic /format:list strips trailing spaces (at least for path win32_pnpentity)
 for /f "tokens=1* delims==" %%I in ('wmic path win32_pnpentity get caption  /format:list ^| find "Arduino Leonardo bootloader"') do (
     call :setCOM "%%~J"
